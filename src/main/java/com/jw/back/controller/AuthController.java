@@ -28,8 +28,8 @@ public class AuthController {
     }
 
     @PostMapping("/check-duplicate-id")
-    public ResponseEntity<?> checkDuplicateId(@RequestBody String username) {
-        if (userService.existByUsername(username)) {
+    public ResponseEntity<?> checkDuplicateId(@RequestBody User user) {
+        if (userService.existByUsername(user.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디가 이미 존재합니다.");
         } else {
             return ResponseEntity.status(HttpStatus.OK).body("사용 가능한 아이디 입니다.");
