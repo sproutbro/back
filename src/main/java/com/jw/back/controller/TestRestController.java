@@ -1,4 +1,4 @@
-package com.jw.back.restcontroller;
+package com.jw.back.controller;
 
 import com.jw.back.model.Test;
 import com.jw.back.service.TestService;
