@@ -14,13 +14,12 @@ public class UserService {
     private final UserRepository userRepository;
 
     public void saveUser(User user) {
-        user.setPw(passwordEncoder.encode(user.getPw()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.insertUser(user);
     }
 
-    public Boolean existByUsername(String name) {
+    public Boolean existByUsername(String username) {
         Boolean result = false;
-        String username = name;
         User findUser = userRepository.getUserByUsername(username);
         if (findUser != null) {
             result = true;

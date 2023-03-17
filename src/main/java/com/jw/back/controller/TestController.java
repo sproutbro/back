@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test")
-public class TestRestController {
+public class TestController {
 
     private final TestService testService;
 
-    public TestRestController(TestService testService) {
+    public TestController(TestService testService) {
         this.testService = testService;
     }
 
@@ -26,7 +26,6 @@ public class TestRestController {
     @GetMapping("/2")
     public List<Test> test2() {
         List<Test> all = testService.findAll();
-        System.out.println(all);
         return testService.findAll();
     }
 

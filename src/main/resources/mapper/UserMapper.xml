@@ -7,9 +7,9 @@
         SELECT * FROM User WHERE email = #{email}
     </select>
     <select id="getUserByUsername" resultType="User" parameterType="String">
-        SELECT * FROM User WHERE name = #{name}
+        SELECT * FROM User WHERE username = #{username}
     </select>
     <insert id="insertUser" parameterType="User">
-        INSERT INTO User (name, email, pw) VALUES (#{name},  #{email}, #{pw});
+        INSERT INTO User (username, email, password) VALUES (#{username},  #{email}, #{password});
     </insert>
 </mapper>

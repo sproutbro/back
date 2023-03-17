@@ -5,7 +5,6 @@ import com.jw.back.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
-        if (userService.existByUsername(user.getName())) {
+        if (userService.existByUsername(user.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디가 이미 존재합니다.");
         } else {
             userService.saveUser(user);
@@ -29,8 +28,8 @@ public class AuthController {
     }
 
     @PostMapping("/check-duplicate-id")
-    public ResponseEntity<?> checkDuplicateId(@RequestBody String name) {
-        if (userService.existByUsername(name)) {
+    public ResponseEntity<?> checkDuplicateId(@RequestBody String username) {
+        if (userService.existByUsername(username)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디가 이미 존재합니다.");
         } else {
             return ResponseEntity.status(HttpStatus.OK).body("사용 가능한 아이디 입니다.");
