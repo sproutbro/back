@@ -10,6 +10,6 @@ public class Board {
     private String author;
     private String title;
     private String content;
-    private Timestamp created_at;
+    private Timestamp createdAt;
     private int views;
 }
