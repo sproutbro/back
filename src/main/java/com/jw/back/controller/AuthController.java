@@ -1,6 +1,5 @@
 package com.jw.back.controller;
 
-import com.jw.back.config.auth.PrincipalDetailsService;
 import com.jw.back.filter.JwtTokenProvider;
 import com.jw.back.model.User;
 import com.jw.back.service.UserService;
@@ -10,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +25,13 @@ public class AuthController {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    private final PrincipalDetailsService principalDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, PrincipalDetailsService principalDetailsService) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.principalDetailsService = principalDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping("/register")
@@ -61,7 +61,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
         );
 
-        UserDetails userDetails = principalDetailsService.loadUserByUsername(user.getUsername());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
 
         // JWT 토큰 생성
         String token = jwtTokenProvider.createToken(userDetails.getUsername());
