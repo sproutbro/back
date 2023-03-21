@@ -1,4 +1,4 @@
-package com.jw.back.filter;
+package com.jw.back.auth.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

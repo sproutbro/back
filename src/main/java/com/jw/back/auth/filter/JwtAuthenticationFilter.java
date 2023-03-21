@@ -1,4 +1,4 @@
-package com.jw.back.filter;
+package com.jw.back.auth.filter;
 
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
@@ -26,8 +26,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String token = jwtTokenProvider.resolveToken(request);
-
-        System.out.println("token = " + token);
 
         try {
             if (token != null && jwtTokenProvider.validateToken(token)) {

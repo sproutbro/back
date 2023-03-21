@@ -1,7 +1,7 @@
-package com.jw.back.config;
+package com.jw.back.auth;
 
-import com.jw.back.filter.JwtAuthenticationFilter;
-import com.jw.back.filter.JwtTokenProvider;
+import com.jw.back.auth.filter.JwtAuthenticationFilter;
+import com.jw.back.auth.filter.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

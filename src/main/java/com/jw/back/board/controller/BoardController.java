@@ -1,7 +1,7 @@
-package com.jw.back.controller;
+package com.jw.back.board.controller;
 
 import com.jw.back.model.Board;
-import com.jw.back.repository.BoardRepository;
+import com.jw.back.board.repository.BoardRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,17 +16,18 @@ public class BoardController {
     }
 
     @GetMapping
-    public List<Board> getBoards() {
+    public List<Board> findAll() {
         return boardRepository.findAll();
     }
 
     @PostMapping
-    public Integer createBoard(@RequestBody Board board) {
+    public Board save(@RequestBody Board board) {
         return boardRepository.save(board);
     }
 
     @GetMapping("/{id}")
-    public Board getPostById(@PathVariable Long id) {
-        return boardRepository.findById(id);
+    public Board findById(@PathVariable Long id) {
+        return boardRepository.findById(id).get();
     }
+
 }
